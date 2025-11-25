@@ -10,277 +10,293 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   
 <style>
-  /* --- CSS Styles --- */
-  :root {
-    --bg:#f8f9fa;
-    --panel:#fff;
-    --muted:#6c757d;
-    --card:linear-gradient(180deg,#fff,#f0f2f5);
-    --accent:#6b8e23;
-    --accent-strong:#5a7a1b;
-    --glass-border:rgba(0,0,0,0.08);
-    --text-color:#212529;
-  }
+/* --- CSS Variables --- */
+:root {
+  --bg:#f8f9fa;
+  --panel:#fff;
+  --muted:#6c757d;
+  --card:linear-gradient(180deg,#fff,#f0f2f5);
+  --accent:#6b8e23;
+  --accent-strong:#5a7a1b;
+  --glass-border:rgba(0,0,0,0.08);
+  --text-color:#212529;
+}
 
-  * { 
-    box-sizing: border-box; 
-  }
+* { 
+  box-sizing: border-box; 
+}
 
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: var(--bg);
-    color: var(--text-color);
-    overflow-x: hidden;
-  }
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
 
-  header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 18px 28px;
-    border-bottom: 2px solid rgba(107,142,35,0.15);
-    background: linear-gradient(90deg, rgba(107,142,35,0.08), rgba(255,255,255,0));
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    text-align: center;
-  }
+/* --- Header Styles (Scrollable) --- */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 28px;
+  border-bottom: 2px solid rgba(107,142,35,0.15);
+  background: linear-gradient(90deg, rgba(107,142,35,0.08), rgba(255,255,255,0));
+  /* Removed sticky position */
+  z-index: 1000;
+  text-align: center;
+}
 
-  header h1 {
-    margin: 0;
-    font-size: 26px;
-    color: var(--accent);
-    font-weight: 700;
-    width: 100%;
-    text-align: center;
-  }
+/* Heading color changed to grey (--muted) */
+header h1 {
+  margin: 0;
+  font-size: 26px;
+  color: var(--muted); /* Changed to muted color (grey) */
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
 
-  header .cart-btn {
-    position: absolute;
-    right: 30px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent);
-    background: transparent;
-    border: 1px solid rgba(107,142,35,0.15);
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .cart-btn:hover { background: rgba(107,142,35,0.08); }
-  .cart-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+header .cart-btn {
+  position: absolute;
+  right: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid rgba(107,142,35,0.15);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.cart-btn:hover { background: rgba(107,142,35,0.08); }
+.cart-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  main {
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 22px;
-    position: relative;
-  }
+/* --- Main Content Area Styles (Restored) --- */
+main {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  position: relative;
+}
 
-  .content-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
-    width: 100%;
-    max-width: 1400px;
-    padding-left: 200px; /* shifted to make space for left sidebar */
-  }
+/* Restored: Allows content and grid to start to the right of the fixed sidebar */
+.content-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 1400px;
+  padding-left: 200px; /* Shifts content right to clear the sidebar area */
+}
 
-  .grid {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
+/* --- VERTICAL SIDEBAR (Filter Bar) STYLES (Restored) --- */
+.sidebar {
+  position: fixed; /* Makes it stick on the left */
+  left: 0;
+  top: 120px; /* Positioned below the header */
+  width: 180px;
+  background: var(--panel);
+  border-right: 1px solid var(--glass-border);
+  border-radius: 0 15px 15px 0;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.06);
+  padding: 16px;
+  color: var(--text-color);
+  z-index: 20;
+}
 
-  @media(max-width:1200px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
-  @media(max-width:900px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
-  @media(max-width:600px){ .grid{ grid-template-columns: 1fr; } }
+.sidebar h3 {
+  text-align: center;
+  font-size: 16px;
+  color: var(--accent);
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
 
-  .card {
-    background: var(--card);
-    border-radius: 14px;
-    padding: 24px 18px;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    text-align: center;
-    transition: 0.2s;
-  }
-  .card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(107,142,35,0.15); }
+.sidebar label {
+  /* FIX: Align text to baseline for a straighter look */
+  display: flex;
+  align-items: baseline; 
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
 
-  .icon { font-size: 44px; color: var(--accent); margin-bottom: 10px; }
-
-  .card h3 { margin: 8px 0; font-size: 17px; font-weight: 600; }
-  .card p { margin: 6px 0; color: var(--muted); font-size: 14px; }
-
-  .stock-info { font-size: 13px; font-weight: 500; margin: 4px 0; }
-  .stock-info.low { color: #d9534f; }
-  .stock-info.high { color: var(--accent-strong); }
-
-  .price { font-weight: 700; margin-top: 8px; font-size: 15px; }
-
-  .add-btn {
-    margin-top: 12px;
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 10px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    transition: all 0.2s ease;
-  }
-  .add-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(107,142,35,0.15); }
-  .add-btn:disabled { background: #ced4da; cursor: not-allowed; }
+/* NEW RULE: Ensures radio button inputs align perfectly with the text */
+.sidebar label input[type="radio"] {
+  margin: 0; 
+  vertical-align: left; 
+}
 
 
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 120px;
-    width: 180px;
-    background: var(--panel);
-    border-right: 1px solid var(--glass-border);
-    border-radius: 0 15px 15px 0;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.06);
-    padding: 16px;
-    color: var(--text-color);
-    z-index: 20;
-  }
+/* --- Grid and Card Styles --- */
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
 
-  .sidebar h3 {
-    text-align: center;
-    font-size: 16px;
-    color: var(--accent);
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-weight: 700;
-  }
+@media(max-width:1200px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
+@media(max-width:900px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:600px){ .grid{ grid-template-columns: 1fr; } }
 
-  .sidebar label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 24px 18px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.2s;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(107,142,35,0.15); }
 
-  .checkout-wrap {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 20px;
-  }
+.icon { font-size: 44px; color: var(--accent); margin-bottom: 10px; }
 
-  .checkout-left, .checkout-right {
-    border-radius: 12px;
-    background: var(--panel);
-    border: 1px solid var(--glass-border);
-    padding: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  }
-  .checkout-left { flex: 1; min-width: 320px; }
-  .checkout-right { width: 380px; min-width: 260px; }
+.card h3 { margin: 8px 0; font-size: 17px; font-weight: 600; }
+.card p { margin: 6px 0; color: var(--muted); font-size: 14px; }
 
-  .section-title { color: var(--accent); font-weight: 700; margin-bottom: 12px; font-size: 18px; }
+.stock-info { font-size: 13px; font-weight: 500; margin: 4px 0; }
+.stock-info.low { color: #d9534f; }
+.stock-info.high { color: var(--accent-strong); }
 
-  label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 600; }
+.price { font-weight: 700; margin-top: 8px; font-size: 15px; }
 
-  input, select {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.1);
-    background: #f0f2f5;
-    color: var(--text-color);
-    margin-bottom: 14px;
-  }
+.add-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+.add-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(107,142,35,0.15); }
+.add-btn:disabled { background: #ced4da; cursor: not-allowed; }
 
-  .place-order-btn {
-    margin-top: 10px;
-    width: 100%;
-    padding: 11px 12px;
-    border-radius: 10px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-    color: white;
-    border: none;
-    font-weight: 800;
-    cursor: pointer;
-  }
-  .place-order-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .cart-list { display: flex; flex-direction: column; gap: 10px; }
-  .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-radius: 8px;
-    background: #f0f2f5;
-  }
+/* --- Checkout and Cart Styles --- */
+.checkout-wrap {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+}
 
-  .cart-item .title { font-weight: 700; }
+.checkout-left, .checkout-right {
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.checkout-left { flex: 1; min-width: 320px; }
+.checkout-right { width: 380px; min-width: 260px; }
 
-  .total-row {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 12px;
-    border-top: 1px dashed rgba(0,0,0,0.1);
-    margin-top: 10px;
-  }
+.section-title { color: var(--accent); font-weight: 700; margin-bottom: 12px; font-size: 18px; }
 
-  .summary {
-    background: var(--panel);
-    border-radius: 14px;
-    padding: 28px;
-    max-width: 700px;
-    width: 100%;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    text-align: center;
-  }
+label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 600; }
 
-  .summary h2 { color: var(--accent); margin-bottom: 10px; }
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: #f0f2f5;
+  color: var(--text-color);
+  margin-bottom: 14px;
+}
 
-  .summary table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 15px;
-  }
+.place-order-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: white;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+}
+.place-order-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .summary table th, .summary table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #e9ecef;
-  }
+.cart-list { display: flex; flex-direction: column; gap: 10px; }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f0f2f5;
+}
 
-  .summary .back-btn {
-    background: transparent;
-    border: 1px solid rgba(0,0,0,0.2);
-    color: var(--muted);
-    padding: 8px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
+.cart-item .title { font-weight: 700; }
 
-  .fade-slide-enter-active, .fade-slide-leave-active {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .fade-slide-enter, .fade-slide-leave-to {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(0,0,0,0.1);
+  margin-top: 10px;
+}
+
+.summary {
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.summary h2 { color: var(--accent); margin-bottom: 10px; }
+
+.summary table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+}
+
+.summary table th, .summary table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.summary .back-btn {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.2);
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* --- Transition Styles --- */
+.fade-slide-enter-active, .fade-slide-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-slide-enter, .fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
 </style>
+
 </head>
 <body>
   <div id="app">
@@ -302,10 +318,10 @@
           <div class="content-wrap">
             
             <div v-if="isLoading" style="padding: 40px; color: var(--muted);">
-                <i class="fas fa-spinner fa-spin"></i> Loading activities from backend...
+                <i class="fas fa-spinner fa-spin"></i> Loading activities...
             </div>
             <div v-else-if="!sortedProducts.length" style="padding: 40px; color: var(--muted);">
-                No activities found. Please check your MongoDB 'activities' collection.
+                Page Not Found!.
             </div>
 
             <div v-else class="grid">
@@ -415,7 +431,7 @@
         </div>
 
         <div v-else-if="showSummary" key="summary-view" class="summary">
-          <h2>Order Summary 🎉</h2>
+          <h2>Order Summary</h2>
           <p>Thank you for registering, <strong>{{ order.name }}</strong>!</p>
 
           <table>
@@ -431,15 +447,21 @@
           <h3 style="color:var(--accent);margin-bottom:8px;">Selected Clubs</h3>
 
           <table>
-            <tr><th>Club</th><th>Price (AED)</th></tr>
-            <tr v-for="(item, i) in cartDetails" :key="i">
-              <td>{{ item.subject }}</td>
-              <td>{{ item.price }}</td>
-            </tr>
-            <tr>
-              <th style="border-top:2px solid #e9ecef;">Total</th>
-              <th style="border-top:2px solid #e9ecef;">{{ totalPrice }}</th>
-            </tr>
+            <thead>
+              <tr><th>Club</th><th>Price (AED)</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, i) in summaryItems" :key="i"> 
+                <td>{{ item.subject }}</td>
+                <td>{{ item.price }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th style="border-top:2px solid #e9ecef;">Total</th>
+                <td style="border-top:2px solid #e9ecef; font-weight:700;">AED {{ summaryTotal }}</td> 
+              </tr>
+            </tfoot>
           </table>
 
           <p style="font-size:13px;color:var(--muted);margin-top:10px;">
@@ -453,7 +475,7 @@
     </main>
   </div>
 
-  <script>
+ <script>
   new Vue({
     el:'#app',
     data:{
@@ -463,10 +485,14 @@
       orderType:'asc',
       cart:[],
       orderDate:'',
-      products: [], // Data now comes from the Back-End API
+      products: [],
       isLoading: true,
-      apiURL: 'http://localhost:3000/api', // 🛑 BACKEND URL
-        
+      apiURL: 'http://localhost:3000/api', 
+      
+      // Data to hold summary details after order is placed
+      summaryItems: [],
+      summaryTotal: 0, 
+
       order:{
         name:'',
         email:'',
@@ -478,7 +504,6 @@
       },
     },
     
-    // Lifecycle hook to fetch data immediately when the app starts
     created() {
       this.fetchActivities();
     },
@@ -526,7 +551,6 @@
     },
 
     methods:{
-      // Method to fetch activities from API (GET /api/activities)
       fetchActivities(){
         this.isLoading = true;
         
@@ -538,7 +562,6 @@
             return response.json();
           })
           .then(data => {
-            // Map the fetched activities to include the inCart property
             this.products = data.map(activity => ({
               ...activity,
               inCart: 0 // Initialize local counter
@@ -547,10 +570,9 @@
           })
           .catch(error => {
             console.error("Could not fetch activities:", error);
-            // Display error if backend is not running or Mongo is empty
             this.products = []; 
             this.isLoading = false;
-            alert("Error loading activities. Please ensure the Back-End server is running on http://localhost:3000.");
+            alert("Error loading activities.");
           });
       },
 
@@ -562,7 +584,7 @@
 
       addToCart(prod){
         if(this.canAddToCart(prod)){
-          this.cart.push(prod._id); // Store the MongoDB ID
+          this.cart.push(prod._id);
           prod.inCart++;
         }
       },
@@ -583,12 +605,10 @@
           return;
         }
         
-        // Prepare the data payload for the Back-End
         const orderData = {
           student: this.order,
-          // Aggregate all cart items by ID and quantity (1 per item)
           items: this.cart.map(_id => ({
-            id: _id, // Use 'id' for the backend to easily process
+            id: _id,
             quantity: 1 
           })),
           totalPrice: this.totalPrice,
@@ -603,7 +623,6 @@
           if (res.status === 200 || res.status === 201) {
             return res.json();
           } else {
-            // Check if status is 400 (Bad Request), which might indicate a stock issue
             if (res.status === 400) {
               alert("Error: The server rejected the order, possibly due to insufficient stock or missing details.");
             }
@@ -613,10 +632,16 @@
         .then(data => {
           console.log("Order placed successfully:", data);
           this.orderDate = new Date().toLocaleString();
+          
+          // --- FIX: SAVE SUMMARY DETAILS BEFORE CLEARING CART ---
+          this.summaryItems = this.cartDetails; 
+          this.summaryTotal = this.totalPrice; 
+          // ----------------------------------------------------
+
           this.showCheckout = false;
           this.showSummary = true;
           
-          // Clear local cart state after successful submission
+          // Clear local cart state AFTER saving the summary
           this.cart = [];
           this.products.forEach(p => p.inCart = 0);
         })
@@ -629,12 +654,14 @@
       backToMain(){
         this.showSummary=false;
         this.fetchActivities(); // Re-fetch activities to ensure stock is updated
-        // Reset the form data
+        // Reset the form data and summary state
         this.order = { name:'', email:'', phone:'', country:'United Arab Emirates', city:'', studentNumber:'', year:'' };
+        this.summaryItems = []; 
+        this.summaryTotal = 0; 
       }
     }
   });
-  </script>
+  </script> 
 
 </body>
 </html>
