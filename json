@@ -1,0 +1,72 @@
+[
+  {
+    "subject": "Music",
+    "location": "Dubai",
+    "price": 120,
+    "icon": "fas fa-music",
+    "stock": 5
+  },
+  {
+    "subject": "Robotics",
+    "location": "Dubai",
+    "price": 180,
+    "icon": "fas fa-robot",
+    "stock": 8
+  },
+  {
+    "subject": "Photography",
+    "location": "Dubai",
+    "price": 150,
+    "icon": "fas fa-camera",
+    "stock": 7
+  },
+  {
+    "subject": "Drama & Theatre",
+    "location": "Sharjah",
+    "price": 130,
+    "icon": "fas fa-theater-masks",
+    "stock": 12
+  },
+  {
+    "subject": "Cooking",
+    "location": "Ajman",
+    "price": 140,
+    "icon": "fas fa-utensils",
+    "stock": 6
+  },
+  {
+    "subject": "Chess Club",
+    "location": "Sharjah",
+    "price": 95,
+    "icon": "fas fa-chess",
+    "stock": 9
+  },
+  {
+    "subject": "Art & Painting",
+    "location": "Abu Dhabi",
+    "price": 125,
+    "icon": "fas fa-palette",
+    "stock": 4
+  },
+  {
+    "subject": "Dance",
+    "location": "Dubai",
+    "price": 110,
+    "icon": "fas fa-child",
+    "stock": 11
+  },
+  {
+    "subject": "Creative Writing",
+    "location": "Abu Dhabi",
+    "price": 100,
+    "icon": "fas fa-pen-nib",
+    "stock": 3
+  },
+  {
+    "subject": "Gardening",
+    "location": "Dubai",
+    "price": 90,
+    "icon": "fas fa-seedling",
+    "stock": 5
+  }
+]
