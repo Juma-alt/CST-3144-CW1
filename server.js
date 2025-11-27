@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 const { connectDB } = require("./config/db"); 
@@ -7,15 +6,15 @@ const { connectDB } = require("./config/db");
 const orderRoutes = require("./routes/orders");
 const activityRoutes = require("./routes/activities");
 
-// The PORT variable is still loaded via db.js's dotenv call
+
 const PORT = process.env.PORT || 3000; 
 
 const app = express();
 
 app.use(cors({
-    origin: '*', 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true
+    origin: '*', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true
 }));
 
 app.use(express.json());
@@ -26,14 +25,15 @@ app.use("/api/activities", activityRoutes);
 
 // DATABASE CONNECTION & SERVER START
 connectDB((err) => {
-    if (err) {
-        console.error('Failed to start server due to database error.');
-        process.exit(1); 
-        return;
-    }
-
-    app.listen(PORT, () => {
-        console.log(`MongoDB Connected (Native Driver)`);
-        console.log(`✅ Server running on http://localhost:${PORT}`);
-    });
+    if (err) {
+        console.error('Failed to start server due to database error.');
+        process.exit(1); 
+        return;
+    }
+    
+   
+    app.listen(PORT, '0.0.0.0', () => { 
+        console.log(`MongoDB Connected (Native Driver)`);
+        console.log(`✅ Server running on port ${PORT}`);
+    });
 });
