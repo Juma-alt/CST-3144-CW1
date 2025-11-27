@@ -21,17 +21,17 @@
     "stock": 7
   },
   {
-    "subject": "Drama & Theatre",
+    "subject": "Public Speaking",
     "location": "Sharjah",
     "price": 130,
-    "icon": "fas fa-theater-masks",
+    "icon": "fas fa-person-chalkboard",
     "stock": 12
   },
   {
-    "subject": "Cooking",
+    "subject": "Football",
     "location": "Ajman",
     "price": 140,
-    "icon": "fas fa-utensils",
+    "icon": "fas fa-futbol",
     "stock": 6
   },
   {
@@ -63,10 +63,10 @@
     "stock": 3
   },
   {
-    "subject": "Gardening",
+    "subject": "Fashion Club",
     "location": "Dubai",
-    "price": 90,
-    "icon": "fas fa-seedling",
+    "price": 350,
+    "icon": "fas fa-shirt",
     "stock": 5
   }
 ]
