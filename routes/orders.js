@@ -4,7 +4,7 @@ const { ObjectId } = require('mongodb');
 
 const router = express.Router();
 
-// POST /api/orders - CREATE ORDER and UPDATE STOCK
+
 router.post("/", async (req, res) => {
     const orderData = req.body; 
     
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
             };
         });
 
-        //  UPDATE STOCK ---
+        //  UPDATE STOCK 
         const updatePromises = finalItems.map(item => 
             db.collection('activities').updateOne(
                 { 

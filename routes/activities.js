@@ -3,7 +3,6 @@ const { getDb } = require('../config/db');
 
 const router = express.Router();
 
-// GET all activities from the 'activities' collection
 router.get("/", async (req, res) => {
     try {
    
@@ -21,5 +20,4 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Export using CommonJS syntax
 module.exports = router;
