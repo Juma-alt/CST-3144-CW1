@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path"); // Added to handle file paths
-const fs = require("fs"); // Added to check if files exist
+const path = require("path"); 
+const fs = require("fs"); 
 const { connectDB } = require("./config/db"); 
 
 const orderRoutes = require("./routes/orders");
@@ -10,13 +10,10 @@ const activityRoutes = require("./routes/activities");
 const PORT = process.env.PORT || 3000; 
 const app = express();
 
-// ==========================================
-// A. LOGGER MIDDLEWARE (Requirement 4%)
-// ==========================================
 app.use((req, res, next) => {
     const timestamp = new Date().toISOString();
     console.log(`[${timestamp}] ${req.method} request to: ${req.url}`);
-    next(); // Pass control to the next middleware
+    next(); 
 });
 
 app.use(cors({
@@ -27,19 +24,16 @@ app.use(cors({
 
 app.use(express.json());
 
-// ==========================================
-// B. STATIC FILE MIDDLEWARE (Requirement 4%)
-// ==========================================
+
 app.get("/images/:filename", (req, res) => {
     const filename = req.params.filename;
-    // Assuming your images are stored in a folder called "public/images"
     const imagePath = path.join(__dirname, 'public', 'images', filename);
 
-    // Check if the file exists on the server
+    // To check if the file exists on the server
     if (fs.existsSync(imagePath)) {
         res.sendFile(imagePath);
     } else {
-        // Return an error message if the image file does not exist
+        // will return an error message if the image file does not exist
         res.status(404).json({ error: "Image file not found" });
     }
 });
